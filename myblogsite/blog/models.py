@@ -7,12 +7,12 @@ from django.urls import reverse
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=120)
-    content = models.TextField()
+    text = models.TextField()
     created_at = models.DateTimeField(default=timezone.now())
     published_date = models.DateTimeField(blank=True, null=True)
 
     def get_absolute_url(self):
-        return reverse('blog-detail', kwargs={
+        return reverse('post_detail', kwargs={
             'pk': self.pk
         })
 
@@ -30,12 +30,12 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', related_name='comments', on_delete=models.CASCADE)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    content = models.TextField()
+    text = models.TextField()
     created_at = models.DateTimeField(default=timezone.now())
     approved_comment = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('blog-list')
+        return reverse('post_list')
 
     def approve(self):
         self.approved_comment = True
