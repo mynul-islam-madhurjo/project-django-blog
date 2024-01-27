@@ -19,7 +19,7 @@ git clone
 ```
 python -m venv myenv
 source myenv/bin/activate  # On macOS and Linux
-myenv\Scripts\activate    # On Windows
+source myenv/Scripts/activate    # On Windows
 ```
 3. Install Django:
 ```
